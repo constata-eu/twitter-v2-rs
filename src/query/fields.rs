@@ -64,6 +64,7 @@ pub enum TweetField {
     Source,
     Text,
     Withheld,
+    NoteTweet
 }
 
 #[derive(Copy, Clone, Debug, Display)]

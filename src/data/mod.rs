@@ -13,6 +13,7 @@ mod tweets_count;
 mod user;
 mod verb;
 mod withheld;
+mod note_tweet;
 
 pub use compliance_job::*;
 pub use entity::*;
@@ -29,3 +30,4 @@ pub use tweets_count::*;
 pub use user::*;
 pub use verb::*;
 pub use withheld::*;
+pub use note_tweet::*;

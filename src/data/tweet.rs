@@ -1,5 +1,6 @@
 use super::entity::FullTextEntities;
 use super::withheld::Withheld;
+use super::note_tweet::NoteTweet;
 use super::GeoCoordinates;
 use crate::id::{NumericId, StringId};
 use serde::{Deserialize, Serialize};
@@ -143,4 +144,6 @@ pub struct Tweet {
     pub source: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub withheld: Option<Withheld>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub note_tweet: Option<NoteTweet>,
 }
