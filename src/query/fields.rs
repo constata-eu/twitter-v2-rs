@@ -15,7 +15,7 @@ pub enum MediaField {
     OrganicMetrics,
     PromotedMetrics,
     AltText,
-    Variants
+    Variants,
 }
 
 #[derive(Copy, Clone, Debug, Display)]
@@ -64,12 +64,20 @@ pub enum TweetField {
     Source,
     Text,
     Withheld,
-    NoteTweet
+    NoteTweet,
 }
 
 #[derive(Copy, Clone, Debug, Display)]
 #[strum(serialize_all = "snake_case")]
 pub enum UserField {
+    Affiliation,
+    ConfirmedEmail,
+    ConnectionStatus,
+    Parody,
+    VerifiedFollowersCount,
+    VerifiedType,
+    Subscription,
+    SubscriptionType,
     CreatedAt,
     Description,
     Entities,
