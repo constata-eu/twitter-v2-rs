@@ -5,13 +5,10 @@ where
     T: IntoIterator,
     T::Item: ToString,
 {
-    value
-        .into_iter()
-        .map(|i| i.to_string())
-        .collect::<Vec<_>>()
-        .join(",")
+    value.into_iter().map(|i| i.to_string()).collect::<Vec<_>>().join(",")
 }
 
+#[allow(dead_code)]
 pub(crate) trait ToQuery {
     fn to_query(self, query: &str) -> Vec<(&str, String)>;
 }
@@ -51,8 +48,7 @@ pub trait UrlQueryExt {
     fn append_query_time(&mut self, key: &str, time: time::OffsetDateTime) {
         self.append_query_val(
             key,
-            time.format(&time::format_description::well_known::Rfc3339)
-                .unwrap(),
+            time.format(&time::format_description::well_known::Rfc3339).unwrap(),
         )
     }
 }

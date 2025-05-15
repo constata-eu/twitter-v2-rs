@@ -30,6 +30,16 @@ pub struct GetTimelineRequestBuilder {
 }
 
 get_req_builder! {
+pub struct GetAnalyticsRequestBuilder {
+    ids,
+    analytics_fields,
+    start_time,
+    end_time,
+    analytics_granularity
+}
+}
+
+get_req_builder! {
 pub struct GetTweetsSearchRequestBuilder {
     media_fields,
     user_fields,

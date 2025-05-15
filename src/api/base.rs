@@ -2,11 +2,13 @@ use crate::api_result::{ApiPayload, ApiResponse, ApiResponseExt, ApiResult};
 use crate::authorization::Authorization;
 use crate::error::Result;
 use crate::utils::JsonStream;
+use crate::Error;
 use futures::prelude::*;
 use reqwest::header::AUTHORIZATION;
 use reqwest::{Client, IntoUrl, Method, Url};
 use serde::de::DeserializeOwned;
 use std::sync::Arc;
+use serde_path_to_error::deserialize;
 
 #[derive(Debug)]
 pub struct TwitterApi<A> {
@@ -47,14 +49,19 @@ where
         let authorization = self.auth.header(&req).await?;
         let _ = req.headers_mut().insert(AUTHORIZATION, authorization);
         let url = req.url().clone();
-        let response = self
+
+        let raw_response = self
             .client
             .execute(req)
             .await?
             .api_error_for_status()
-            .await?
-            .json()
             .await?;
+
+        let text = raw_response.text().await?;
+
+        let mut deserializer = serde_json::Deserializer::from_str(&text);
+        let response = deserialize(&mut deserializer)
+            .map_err(|e| Error::custom(format!("Error parsing twitter response: {e} | url: {url} | response: {text}")))?;
         Ok(ApiResponse::new(self, url, response))
     }
 

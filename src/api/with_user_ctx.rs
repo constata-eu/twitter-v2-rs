@@ -86,7 +86,7 @@ where
         self.client.get_user_tweets(self.user_id)
     }
     pub fn get_my_mentions(&self) -> GetTimelineRequestBuilder<A, Vec<Tweet>, TweetsMeta> {
-        self.client.get_user_tweets(self.user_id)
+        self.client.get_user_mentions(self.user_id)
     }
     pub fn get_my_followers(&self) -> GetRelatedUsersRequestBuilder<A, Vec<User>, ResultCountMeta> {
         self.client.get_user_followers(self.user_id)

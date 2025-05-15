@@ -2,7 +2,7 @@ use super::TwitterApi;
 use crate::api_result::ApiResult;
 use crate::authorization::Authorization;
 use crate::data::{
-    Bookmarked, Deleted, Hidden, Liked, Retweeted, StreamRule, Tweet, TweetsCount, User,
+    Bookmarked, Deleted, Hidden, Liked, Retweeted, StreamRule, Tweet, TweetsCount, User, Analytics
 };
 use crate::id::IntoNumericId;
 use crate::meta::{ResultCountMeta, SentMeta, TweetsCountsMeta, TweetsMeta};
@@ -10,6 +10,7 @@ use crate::query::{
     GetRelatedTweetsRequestBuilder, GetStreamRulesRequestBuilder, GetTimelineRequestBuilder,
     GetTweetUsersRequestBuilder, GetTweetsCountsRequestBuilder, GetTweetsRequestBuilder,
     GetTweetsSearchRequestBuilder, GetTweetsStreamRequestBuilder, UrlQueryExt,
+    GetAnalyticsRequestBuilder,
 };
 use crate::requests::{StreamRuleBuilder, TweetBuilder, TweetId};
 use reqwest::Method;
@@ -93,6 +94,9 @@ where
     }
     pub fn get_tweets_sample_stream(&self) -> GetTweetsStreamRequestBuilder<A, Tweet, SentMeta> {
         GetTweetsStreamRequestBuilder::new(self, self.url("tweets/sample/stream").unwrap())
+    }
+    pub fn get_tweets_analytics(&self) -> GetAnalyticsRequestBuilder<A, Analytics, SentMeta> {
+        GetAnalyticsRequestBuilder::new(self, self.url("tweets/analytics").unwrap())
     }
     pub fn get_tweet_retweeted_by(
         &self,

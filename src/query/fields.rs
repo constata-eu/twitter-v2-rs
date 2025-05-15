@@ -134,3 +134,29 @@ pub enum ListField {
     Description,
     OwnerId,
 }
+
+#[derive(Copy, Clone, Debug, Display)]
+#[strum(serialize_all = "snake_case")]
+pub enum AnalyticsField {
+    AppInstallAttempts,
+    AppOpens,
+    Bookmarks,
+    DetailExpands,
+    EmailTweet,
+    Engagements,
+    Follows,
+    HashtagClicks,
+    Id,
+    Impressions,
+    Likes,
+    MediaViews,
+    PermalinkClicks,
+    QuoteTweets,
+    Replies,
+    Retweets,
+    Shares,
+    Timestamp,
+    Unfollows,
+    UrlClicks,
+    UserProfileClicks,
+}

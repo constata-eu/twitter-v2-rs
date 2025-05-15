@@ -89,6 +89,16 @@ macro_rules! get_req_builder_arg {
             self
         }
     };
+    (analytics_fields) => {
+        pub fn analytics_fields(
+            &mut self,
+            fields: impl IntoIterator<Item = $crate::query::AnalyticsField>,
+        ) -> &mut Self {
+            use $crate::query::UrlQueryExt;
+            self.url.append_query_seq("analytics.fields", fields);
+            self
+        }
+    };
     (tweet_expansions) => {
         pub fn expansions(
             &mut self,
@@ -201,6 +211,16 @@ macro_rules! get_req_builder_arg {
     };
     (granularity) => {
         pub fn granularity(&mut self, granularity: $crate::query::Granularity) -> &mut Self {
+            use $crate::query::UrlQueryExt;
+            self.url.append_query_val("granularity", granularity);
+            self
+        }
+    };
+    (analytics_granularity) => {
+        pub fn analytics_granularity(
+            &mut self,
+            granularity: $crate::query::AnalyticsGranularity,
+        ) -> &mut Self {
             use $crate::query::UrlQueryExt;
             self.url.append_query_val("granularity", granularity);
             self
