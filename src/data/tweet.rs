@@ -1,6 +1,6 @@
 use super::entity::FullTextEntities;
-use super::withheld::Withheld;
 use super::note_tweet::NoteTweet;
+use super::withheld::Withheld;
 use super::GeoCoordinates;
 use crate::id::{NumericId, StringId};
 use serde::{Deserialize, Serialize};
@@ -97,6 +97,7 @@ pub enum ReplySettings {
     Everyone,
     MentionedUsers,
     Followers,
+    Following,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
