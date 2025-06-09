@@ -98,6 +98,7 @@ pub enum ReplySettings {
     MentionedUsers,
     Followers,
     Following,
+    Verified,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
